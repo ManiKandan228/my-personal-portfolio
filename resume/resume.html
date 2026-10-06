@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manikandan P — Resume</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --ink: #1a1a18;
+        --soft: #444;
+        --muted: #6b6b66;
+        --rule: #cfcfca;
+      }
+
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+
+      html { background: #e9e9e6; }
+
+      body {
+        font-family: "Newsreader", Georgia, "Times New Roman", serif;
+        font-optical-sizing: auto;
+        color: var(--ink);
+        font-size: 10.6pt;
+        line-height: 1.5;
+        font-variant-numeric: oldstyle-nums;
+      }
+
+      /* The printable A4 sheet */
+      .sheet {
+        width: 210mm;
+        min-height: 297mm;
+        margin: 24px auto;
+        padding: 18mm 18mm 16mm;
+        background: #fff;
+        box-shadow: 0 6px 30px rgba(0, 0, 0, 0.12);
+      }
+
+      /* ---------- Header ---------- */
+      .role-line {
+        text-align: center;
+        font-weight: 700;
+        font-size: 12pt;
+        letter-spacing: 0.01em;
+      }
+      .name {
+        text-align: center;
+        font-size: 31pt;
+        font-weight: 600;
+        line-height: 1.05;
+        letter-spacing: -0.015em;
+        margin: 4px 0 8px;
+      }
+      .contact {
+        text-align: center;
+        color: var(--soft);
+        font-size: 10pt;
+      }
+      .contact a { color: var(--soft); text-decoration: none; }
+      .contact a:hover { text-decoration: underline; }
+      .contact .dot { color: var(--rule); margin: 0 7px; }
+
+      .divider {
+        border: none;
+        border-top: 1.5px dotted var(--rule);
+        margin: 14px 0 4px;
+      }
+
+      /* ---------- Sections ---------- */
+      section { margin-top: 15px; }
+      h2 {
+        font-size: 11.5pt;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        padding-bottom: 3px;
+        border-bottom: 1px solid var(--rule);
+        margin-bottom: 9px;
+      }
+
+      .entry { margin-bottom: 12px; }
+      .entry:last-child { margin-bottom: 2px; }
+
+      .entry-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 12px;
+      }
+      .entry-title { font-weight: 700; font-size: 11pt; }
+      .entry-date {
+        color: var(--muted);
+        font-size: 9.6pt;
+        white-space: nowrap;
+      }
+      .entry-sub {
+        color: var(--soft);
+        font-style: italic;
+        font-size: 10pt;
+        margin-bottom: 4px;
+      }
+
+      ul { list-style: none; }
+      .bullets li {
+        position: relative;
+        padding-left: 14px;
+        margin: 3px 0;
+      }
+      .bullets li::before {
+        content: "–";
+        position: absolute;
+        left: 0;
+        color: var(--muted);
+      }
+      .lead { color: var(--soft); }
+
+      /* Two-column skills */
+      .skills-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 28px;
+        row-gap: 4px;
+      }
+      .skills-grid li {
+        position: relative;
+        padding-left: 14px;
+      }
+      .skills-grid li::before {
+        content: "•";
+        position: absolute;
+        left: 0;
+        color: var(--muted);
+      }
+
+      .award { margin: 3px 0; }
+      .award b { font-weight: 700; }
+
+      /* Floating download button — hidden when printing */
+      .toolbar {
+        position: fixed;
+        top: 18px;
+        right: 18px;
+        z-index: 10;
+      }
+      .toolbar button {
+        font-family: inherit;
+        font-size: 10.5pt;
+        background: var(--ink);
+        color: #fff;
+        border: none;
+        padding: 9px 16px;
+        border-radius: 6px;
+        cursor: pointer;
+        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
+      }
+      .toolbar button:hover { opacity: 0.9; }
+
+      /* ---------- Mobile (on-screen viewing) ---------- */
+      @media screen and (max-width: 820px) {
+        .sheet {
+          width: 100%;
+          min-height: 0;
+          margin: 0;
+          padding: 28px 22px 40px;
+          box-shadow: none;
+        }
+        .name { font-size: 26pt; }
+        .role-line { font-size: 11pt; }
+        body { font-size: 11pt; }
+        .contact { font-size: 10pt; }
+        .contact .dot { margin: 0 4px; }
+        .entry-head { flex-direction: column; gap: 2px; }
+        .skills-grid { grid-template-columns: 1fr; }
+        .toolbar { top: 10px; right: 10px; }
+      }
+
+      /* ---------- Print ---------- */
+      /* Per-page margins so EVERY page (incl. page 2+) has top/bottom space */
+      @page { size: A4; margin: 16mm 16mm; }
+      @media print {
+        html { background: #fff; }
+        .toolbar { display: none; }
+        .sheet {
+          margin: 0;
+          box-shadow: none;
+          width: auto;
+          min-height: auto;
+          padding: 0;
+        }
+        a { color: var(--ink); }
+
+        /* Keep blocks from splitting across pages */
+        .entry,
+        .bullets li,
+        figure,
+        blockquote {
+          break-inside: avoid;
+          page-break-inside: avoid;
+        }
+        /* Never leave a heading stranded at the bottom of a page */
+        h2 {
+          break-after: avoid;
+          page-break-after: avoid;
+        }
+        p {
+          orphans: 2;
+          widows: 2;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="toolbar">
+      <button onclick="window.print()">Download PDF ↓</button>
+    </div>
+
+    <main class="sheet">
+      <!-- ===== Header ===== -->
+      <header>
+        <h1 class="name">Manikandan P</h1>
+        <div class="contact">
+          <a href="mailto:manikandan.ps228@gmail.com">manikandan.ps228@gmail.com</a>
+          <span class="dot">·</span>+91 63845 96140
+          <span class="dot">·</span>Chennai, India
+          <br />
+          <a href="https://github.com/ManiKandan228">github.com/ManiKandan228</a>
+          <span class="dot">·</span>
+          <a href="https://www.linkedin.com/in/manikandan-p-41b320246/">linkedin.com/in/manikandan-p</a>
+        </div>
+        <hr class="divider" />
+      </header>
+
+      <!-- ===== Summary ===== -->
+      <section>
+        <h2>Professional Summary</h2>
+        <p>
+          Software Engineer with a strong full-stack foundation and a focus on AI
+          engineering. Experienced in building voice-driven AI agents, custom
+          speech (TTS/STT) pipelines, LLM and Generative AI integrations, and
+          real-time, scalable systems in Python. Proficient across frontend
+          (Angular, React, TypeScript) and backend (FastAPI, Node.js), with
+          hands-on cloud experience on Google Cloud Platform (GCP) and Kubernetes
+          (GKE). Known for strong ownership and delivering independently;
+          recognized as a top performer by company leadership.
+        </p>
+      </section>
+
+      <!-- ===== Technical Skills ===== -->
+      <section>
+        <h2>Technical Skills</h2>
+        <p style="margin: 4px 0"><b>Languages:</b> Python, TypeScript, JavaScript, Java, SQL</p>
+        <p style="margin: 4px 0"><b>AI / ML:</b> Large Language Models (LLMs), Generative AI (GenAI), LangChain, Voice AI Agents, Custom Text-to-Speech (TTS) &amp; Speech-to-Text (STT), Prompt Engineering, AI/LLM Integrations (ElevenLabs, Sarvam AI, Grok)</p>
+        <p style="margin: 4px 0"><b>Backend:</b> FastAPI, Node.js, Express.js, REST APIs, WebSockets, Real-time Systems, Concurrency, Asynchronous Programming</p>
+        <p style="margin: 4px 0"><b>Frontend:</b> Angular, React, TypeScript, JavaScript, HTML5, CSS3, Responsive UI, MERN Stack</p>
+        <p style="margin: 4px 0"><b>Databases:</b> PostgreSQL, MongoDB, Redis, SQL</p>
+        <p style="margin: 4px 0"><b>Cloud &amp; DevOps:</b> Google Cloud Platform (GCP), Kubernetes (GKE), Horizontal Pod Autoscaling (HPA), Docker, CI/CD, GitHub Actions, Git</p>
+        <p style="margin: 4px 0"><b>Practices:</b> System Design, Scalability, Agile, Product Engineering, End-to-End Ownership</p>
+      </section>
+
+      <!-- ===== Experience ===== -->
+      <section>
+        <h2>Professional Experience</h2>
+
+        <div class="entry">
+          <div class="entry-head">
+            <span class="entry-title">Software Engineer</span>
+            <span class="entry-date">Aug 2025 — Present</span>
+          </div>
+          <div class="entry-sub">iamneo — an NIIT Venture · Chennai, India</div>
+          <ul class="bullets">
+            <li>
+              Designed and shipped an <b>AI Interview voice agent</b> (Python,
+              FastAPI, LLMs) that autonomously conducts first-round screening and
+              returns evidence-backed hire/no-hire reports, eliminating a major
+              manual screening bottleneck for recruiters.
+            </li>
+            <li>
+              Built the <b>AI Mock Interview</b> product on custom
+              Text-to-Speech (TTS) and Speech-to-Text (STT) models with
+              per-candidate skill memory; applied GenAI and LangChain to adapt
+              interviews across sessions and generate detailed feedback reports.
+            </li>
+            <li>
+              Engineered real-time, two-way voice sessions over WebSockets and
+              delivered <b>Interview Insights</b>, computing structured analytics
+              from interview recordings across both AI products.
+            </li>
+            <li>
+              Integrated third-party AI and voice services (ElevenLabs, Sarvam
+              AI, Grok) and owned reliability, concurrency, and scaling on
+              <b>GCP / GKE</b> with Horizontal Pod Autoscaling, Redis, and
+              automated CI/CD via GitHub Actions.
+            </li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <div class="entry-head">
+            <span class="entry-title">Trainee — Full-Stack Engineer</span>
+            <span class="entry-date">Feb 2025 — Aug 2025</span>
+          </div>
+          <div class="entry-sub">iamneo — an NIIT Venture · Chennai, India</div>
+          <ul class="bullets">
+            <li>
+              Owned the <b>Hiring Platform 2.0</b> frontend rewrite — learned Angular and
+              TypeScript in one month and delivered the full UI revamp, new
+              modules, and product migration; designed a clean, professional UI
+              without a dedicated designer, praised by product leadership.
+            </li>
+            <li>
+              Contributed across the Python FastAPI backend, building new user
+              modules and REST APIs end to end.
+            </li>
+            <li>
+              After go-live, <b>single-handedly stabilized the platform</b>
+              across frontend, backend, and GCP infrastructure — sustaining
+              <b>200K+ concurrent users</b> across registration, OTP delivery,
+              assessment, and submission using Horizontal Pod Autoscaling (HPA)
+              on GKE and Redis caching.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ===== Projects ===== -->
+      <section>
+        <h2>Key Projects</h2>
+        <div class="entry">
+          <div class="entry-head">
+            <span class="entry-title">AI Standup Co-Pilot — 2nd Prize, ElevenLabs Worldwide Hackathon</span>
+            <span class="entry-date">2025</span>
+          </div>
+          <div class="entry-sub">Team Neo · Bengaluru chapter (global event across 33 cities)</div>
+          <p class="lead">
+            Built a voice AI agent that runs daily standups end to end — joins the
+            meeting, captures progress and blockers in conversation, auto-updates
+            the project-management tool, raises escalation tickets, and sends
+            structured summaries via Microsoft Teams and email.
+            <b>Tech:</b> Voice Agents, LLMs, ElevenLabs, FastAPI, Python.
+          </p>
+        </div>
+      </section>
+
+      <!-- ===== Education ===== -->
+      <section>
+        <h2>Education</h2>
+        <div class="entry">
+          <div class="entry-head">
+            <span class="entry-title">B.E. Computer Science and Engineering</span>
+            <span class="entry-date">2021 — 2025</span>
+          </div>
+          <div class="entry-sub">Saveetha Engineering College · Chennai</div>
+          <p class="lead">
+            First Class Distinction — CGPA 8.7. Strong foundation in computer
+            science principles, data structures, software engineering, and
+            problem-solving.
+          </p>
+        </div>
+      </section>
+
+    </main>
+  </body>
+</html>

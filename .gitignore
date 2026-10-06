@@ -1,0 +1,19 @@
+# Dependencies
+node_modules
+
+# Build output
+dist
+.vite
+
+# Local env / secrets
+.env
+.env.*
+!.env.example
+
+# Local editor / tool config
+.claude/settings.local.json
+*.local
+
+# OS files
+.DS_Store
+*.log

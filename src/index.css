@@ -1,0 +1,157 @@
+@import "tailwindcss";
+
+/* ============================================================
+   leerob.com-inspired: white canvas, refined serif (Newsreader),
+   single centered column, underlined links. Light theme only.
+   ============================================================ */
+
+:root {
+  --bg: #fdfdfc;
+  --text: #1a1a18;
+  --muted: #6f6f6a;
+  --rule: rgba(26, 26, 24, 0.1);
+  --underline: rgba(26, 26, 24, 0.28);
+  --measure: 38rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 2rem;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Newsreader", "Times New Roman", Times, serif;
+  font-optical-sizing: auto;
+  /* Fluid: ~1.04rem on small phones → 1.18rem on desktop */
+  font-size: clamp(1.04rem, 0.97rem + 0.34vw, 1.18rem);
+  line-height: 1.62;
+  font-variant-numeric: oldstyle-nums proportional-nums;
+  font-feature-settings: "kern" 1, "liga" 1;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-wrap: break-word;
+  overflow-x: hidden;
+}
+
+/* Media never overflows its container */
+img,
+svg,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+::selection {
+  background: #1a1a18;
+  color: #fdfdfc;
+}
+
+/* Links — understated underline that firms up on hover */
+a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--underline);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: text-decoration-color 0.18s ease, color 0.18s ease;
+  overflow-wrap: anywhere;
+}
+a:hover {
+  text-decoration-color: var(--text);
+}
+:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Headings */
+h1, h2, h3 {
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.012em;
+  text-wrap: balance;
+}
+h1 { font-size: clamp(1.7rem, 1.4rem + 1.5vw, 2.1rem); }
+h2 { font-size: clamp(1.35rem, 1.2rem + 0.8vw, 1.55rem); }
+
+p { text-wrap: pretty; }
+strong { font-weight: 600; }
+em { font-style: italic; }
+
+/* Bulleted lists with small square markers */
+.list-square {
+  list-style: square;
+  padding-left: 1.2rem;
+}
+.list-square li {
+  padding-left: 0.2rem;
+  margin: 0.2rem 0;
+}
+.list-square li::marker {
+  color: var(--muted);
+  font-size: 0.8em;
+}
+
+/* Centered reading column — fluid side gutter, safe-area aware */
+.prose-col {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding-left: max(1.15rem, env(safe-area-inset-left));
+  padding-right: max(1.15rem, env(safe-area-inset-right));
+}
+@media (min-width: 480px) {
+  .prose-col {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+/* Utilities */
+.muted { color: var(--muted); }
+.meta {
+  color: var(--muted);
+  font-size: 0.92rem;
+  font-variant-numeric: oldstyle-nums;
+}
+.no-underline-link { text-decoration: none; }
+.no-underline-link:hover { text-decoration: underline; text-decoration-color: var(--text); }
+.rule { border-top: 1px solid var(--rule); }
+
+img {
+  border-radius: 0.5rem;
+  border: 1px solid var(--rule);
+  display: block;
+}
+figcaption { font-style: italic; }
+figure { margin: 0; }
+blockquote { margin: 0; }
+
+/* ---------- Gentle staggered page-load reveal ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .prose-col > * {
+    animation: rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .prose-col > *:nth-child(1) { animation-delay: 0.04s; }
+  .prose-col > *:nth-child(2) { animation-delay: 0.10s; }
+  .prose-col > *:nth-child(3) { animation-delay: 0.16s; }
+  .prose-col > *:nth-child(4) { animation-delay: 0.22s; }
+  .prose-col > *:nth-child(5) { animation-delay: 0.28s; }
+  .prose-col > *:nth-child(6) { animation-delay: 0.34s; }
+  .prose-col > *:nth-child(n + 7) { animation-delay: 0.4s; }
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
